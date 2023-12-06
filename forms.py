@@ -19,3 +19,7 @@ class LoginForm(FlaskForm):
 class FeedbackForm(FlaskForm):
     title=StringField('Title', validators=[InputRequired(message='Title is required'), Length(max=100)])
     content=TextAreaField('Content', validators=[InputRequired(message='Text is required')])
+
+class EditFeedbackForm(FlaskForm):
+    title=StringField('Title', validators=[InputRequired(message='Title is required'), Length(max=100)])
+    content=TextAreaField('Content', validators=[InputRequired(message='Text is required')])

@@ -8,5 +8,42 @@ content %}
   <li>First name: {{user.first_name}}</li>
   <li>Last name: {{user.last_name}}</li>
 </ul>
+<h4>Your feedbacks:</h4>
+<ol>
+  {% for feedback in all_feedback %}
+  <li>
+    <b>{{feedback.username}}</b> - {{feedback.title}} {% if session['username']
+    == feedback.username%} {% endif %}
+    <form
+      style="display: inline"
+      action="/feedback/{{feedback.id}}/delete"
+      method="POST"
+    >
+      <button class="btn tbn-sm btn-danger">Delete</button>
+    </form>
+    <form
+      style="display: inline"
+      action="/feedback/{{feedback.id}}/update"
+      method="POST"
+    >
+      <button class="btn btn-info">Edit</button>
+    </form>
+  </li>
+  {% endfor %}
+</ol>
+<form
+  action="/users/{{user.username}}/feedback/add"
+  method="POST"
+  style="display: inline"
+>
+  <button class="btn btn-secondary">Add feedback</button>
+</form>
+<form
+  action="/users/{{user.username}}/delete"
+  method="POST"
+  style="display: inline"
+>
+  <button class="btn btn-primary">Delete the user</button>
+</form>
 
 {% endblock %}
