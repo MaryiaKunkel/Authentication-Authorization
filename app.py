@@ -41,7 +41,7 @@ def register():
         db.session.commit()
 
         session['username']=new_user.username
-        return redirect('/users/{username}')
+        return redirect(url_for('user_info', username=username))
     
     else:
         return render_template('register.html', form=form)
